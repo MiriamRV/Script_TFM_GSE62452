@@ -131,7 +131,7 @@ colnames(df) <- c('sondas', 'genes')
 # Ckeck duplicates
 sum(duplicated(df)) # 0
 
-# resumo con la mediana los valores de expresión de las probsetes asociadas al mismo gen:
+# Summary with the median the expression values of the probesets associated to the same gene:
 mat_annot = do.call("rbind", lapply(unique(df$genes), function(x){
   
   sondas <- as.character(df$sondas[df$genes == x])
@@ -212,9 +212,6 @@ Metadata$Survival_status2[Metadata$Survival_status2 == "?"] <- NA
 Metadata$Survival_status <- as.numeric(Metadata$Survival_status)
 
 ## Create an excel file with the Medatada
-packageDescription("openxlsx")$Version
-BiocManager::install("openxlsx")
-
 write.xlsx(Metadata, "metadataGSE62452.xlsx")
 
 ## Convert the normalised matrix to dataframe
